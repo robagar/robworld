@@ -1,0 +1,76 @@
+#include "Noise.cg"
+
+
+
+void main(in      float3 position    : POSITION,
+					out     float4 projectedPosition   : POSITION,
+					out     float2 oUV0        : TEXCOORD0,
+					out     float3 worldPosition       : TEXCOORD1, 
+					uniform float4x4 worldViewProj,
+					uniform float maxHeight,
+					uniform float vPerMetre,
+					uniform float pageWidth,
+					uniform float2 pagePosition
+					)
+{
+	projectedPosition = mul(worldViewProj, float4(position.xyz, 1.0)); 
+	
+	// height shading uv coords
+	oUV0 = float2(0.0, saturate((position.z - maxHeight) * vPerMetre));
+	worldPosition = position;
+}
+
+sampler t0 : register(s0);
+
+float oceanVisibilityFactor(float3 worldPosition,
+												    float3 cameraPosition,
+														float maxVisibilityDistance)
+{
+	if (worldPosition.z > 0 && cameraPosition.z > 0)
+		return 0;
+
+	float d = abs(distance(worldPosition, cameraPosition));
+	
+	if (cameraPosition.z > 0 && worldPosition.z < 0)
+	{
+	  // looking into water from above
+		d -= d * ((cameraPosition.z) / (cameraPosition.z - worldPosition.z));
+	}
+	else if (cameraPosition.z < 0 && worldPosition.z > 0)
+	{
+	  // looking out from underwater
+		d -= d * ((worldPosition.z) / (worldPosition.z - cameraPosition.z));
+	}
+	
+	return clamp(d / maxVisibilityDistance, 0, 1);
+}
+
+float4 main_ps(in float2 uv0 : TEXCOORD0,
+							 in float3 worldPosition: TEXCOORD1) : COLOR
+{
+  float3 c = tex2D(t0, uv0).xyz;
+	
+	float n = 1;
+	for(int i=0; i<8; ++i)
+		n *= 0.9 + snoise(worldPosition.xy * 10 * i) * 0.1; 
+
+  return float4(c * n, 1);
+}
+
+void main_ocean_depth_vs(in      float3 position    : POSITION,
+                         out     float4 projectedPosition   : POSITION,
+												 out     float3 worldPosition       : TEXCOORD0,
+												 uniform float4x4 worldViewProj)
+{
+	projectedPosition = mul(worldViewProj, float4(position.xyz, 1.0)); 
+	worldPosition = position;
+}
+
+float4 main_ocean_depth_ps(in float3 worldPosition : TEXCOORD0,
+													 uniform float3 cameraPosition,
+													 uniform float maxVisibilityDistance,
+													 uniform float3 waterColor) : COLOR
+{
+	return float4(waterColor, oceanVisibilityFactor(worldPosition, cameraPosition, maxVisibilityDistance));
+}
+

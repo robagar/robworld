@@ -1,0 +1,27 @@
+void main_vs(in      float3 position    : POSITION,
+						 out     float4 projectedPosition   : POSITION,
+						 out     float3 worldPosition       : TEXCOORD0, 
+						 uniform float4x4 worldViewProj)
+{
+	projectedPosition = mul(worldViewProj, float4(position.xyz, 1.0));
+	
+	worldPosition = position.xyz;
+}	
+
+float4 main_ps(in float3 worldPosition : TEXCOORD0,
+							 uniform float4 cameraPos,
+							 uniform float3 waterColor) : COLOR
+{
+	if (cameraPos.z < 0 && worldPosition.z < 0)
+	{
+		return float4(waterColor, 1);
+	}
+	else
+	{
+		float sinAltitude = dot(normalize(worldPosition), float3(0, 0, 1));
+    float4 horizonColor = float4(0.9, 0.95, 1, 1);
+		float4 zenithColor = float4(0.4, 0.5, 0.8, 1);
+		float f = pow(sinAltitude, 0.75);
+		return lerp(horizonColor, zenithColor, f);
+	}
+}

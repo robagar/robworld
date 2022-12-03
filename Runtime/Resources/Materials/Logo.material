@@ -1,0 +1,17 @@
+material logo_material
+{
+  technique
+  {
+    pass
+    {
+			lighting off
+
+      scene_blend src_alpha one_minus_src_alpha
+
+      texture_unit
+      {
+        texture Logo-HUD.png
+      }
+    }
+  }
+ }  

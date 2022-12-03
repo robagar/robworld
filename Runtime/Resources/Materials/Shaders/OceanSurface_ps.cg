@@ -1,0 +1,28 @@
+
+
+float4 main(
+	in      float3 uvw   : TEXCOORD0, 
+	in      float3 normal: TEXCOORD1, 
+	in      float3 view  : TEXCOORD2,
+	uniform float fresnelBias,
+	uniform float fresnelExp,
+	uniform float4 waterColor,
+	uniform sampler sky
+) : COLOR
+{
+   float3 v = normalize(view);
+
+	 // reflect view direction, swizzle for z being up 
+   float3 rv = reflect(v, normal).xzy;
+   float4 reflectedColor = texCUBE(sky, rv);
+
+	 // fresnel reflection approximation (Schlick's approximation)
+   float t = 1 - dot(-v, normal);
+   float4 color = lerp(waterColor, reflectedColor, saturate(fresnelBias + (1 - fresnelBias) * pow(t, fresnelExp)));
+	 
+	 // restrict transparency to looking close to straight down
+	 float3 down = float3(0, 0, -1);
+	 color.a = max(color.a, smoothstep(0.5, 1, 1 - dot(v, down)));
+	 
+	 return color;
+}

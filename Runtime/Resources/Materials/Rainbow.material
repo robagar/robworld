@@ -1,0 +1,43 @@
+vertex_program RainbowVS cg
+{
+	source Rainbow.cg
+	entry_point main
+	profiles vs_2_0
+}
+
+
+material RainbowMaterial
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+
+			texture_unit
+			{
+				texture rainbow.png
+				tex_coord_set 0
+				tex_address_mode clamp
+			}
+		
+			texture_unit lightmap
+			{
+				texture test_lightmap.png 
+				tex_coord_set 1 
+				colour_op modulate
+				tex_address_mode clamp
+			}
+			
+			vertex_program_ref RainbowVS
+			{
+				param_named_auto worldViewProj worldviewproj_matrix
+				
+				param_named      layerDepth    float 50.0
+				
+				param_named_auto pageWidth     custom 0
+				param_named_auto pagePosition  custom 1
+			}
+		}
+	}
+}

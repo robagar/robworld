@@ -1,0 +1,20 @@
+
+
+struct VS_OUTPUT {
+   float4 pos:    POSITION;
+   float3 normal: TEXCOORD0;
+};
+
+VS_OUTPUT main(
+	in 			float4 pos: POSITION, 
+	in 			float3 normal: NORMAL,
+	uniform float4x4 worldViewProj_matrix
+)
+{
+   VS_OUTPUT o;
+
+   o.pos = mul(worldViewProj_matrix, pos);
+   o.normal = normal;
+
+   return o;
+}

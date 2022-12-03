@@ -1,0 +1,21 @@
+material TransparentCyanMaterial
+{
+  technique
+  {
+    pass
+    {
+      scene_blend alpha_blend
+      depth_write off
+      depth_bias 0.4
+	  
+	  specular 1.0 1.0 1.0 10.0
+	  
+      texture_unit
+      {
+        colour_op_ex source1 src_manual src_current 0.25 0.75 0.75
+        alpha_op_ex source1 src_manual src_current 0.5
+      }
+	  
+    }
+  }
+}

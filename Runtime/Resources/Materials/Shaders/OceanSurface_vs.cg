@@ -1,0 +1,30 @@
+
+
+struct VS_OUTPUT {
+   float4 pos      : POSITION;
+   float3 uvw      : TEXCOORD0;
+   float3 normal   : TEXCOORD1;
+   float3 view     : TEXCOORD2;
+};
+
+VS_OUTPUT main(
+	in 			float4 pos: POSITION, 
+	in 			float3 normal: NORMAL,
+	uniform float4x4 worldViewProj_matrix,
+	uniform float textureScale,
+	uniform float3 eyePosition
+)
+{
+   VS_OUTPUT o;
+
+   o.pos = mul(worldViewProj_matrix, pos);
+   
+   // uvw is the calculated uvw coordinates based on vertex position
+   o.uvw = pos.xyz * textureScale;
+   
+   //  the view vector needs to be in vertex space
+   o.view = pos.xyz - eyePosition;
+   o.normal = normal;
+
+   return o;
+}

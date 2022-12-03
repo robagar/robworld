@@ -1,0 +1,24 @@
+void main(in      float3 position    : POSITION,
+					out     float4 oPosition   : POSITION,
+					out     float2 oUV0        : TEXCOORD0,
+					out     float2 oUV1        : TEXCOORD1,
+					uniform float4x4 worldViewProj,
+					uniform float maxHeight,
+					uniform float vPerMetre,
+					uniform float pageWidth,
+					uniform float2 pagePosition
+					)
+{
+	oPosition = mul(worldViewProj, float4(position.xyz, 1.0)); 
+	
+	// height shading uv coords
+	oUV0 = float2(0.0, saturate((position.z - maxHeight) * vPerMetre));
+	
+	// lightmap uv coords
+	oUV1 = float2((position.x - pagePosition.x)/pageWidth, (position.y - pagePosition.y)/pageWidth);
+}
+
+float4 main_ps(in float4 c : COLOR) : COLOR
+{
+  return c;
+}

@@ -1,0 +1,12 @@
+void Zone_vs_main(in float3 position : POSITION, 
+									in float4 iColor : COLOR,
+									uniform float4x4 worldViewProj,
+									out float4 oPosition : POSITION//,
+									//out float4 oColor : COLOR
+									)
+{
+	//oPosition = float4(position, 1.0);
+	oPosition = mul(worldViewProj, float4(position.xyz, 1.0)); 
+  //oColor = iColor;
+  //oColor = float4(0.5, 0.0, 0.0, 0.5);
+}

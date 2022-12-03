@@ -1,0 +1,55 @@
+vertex_program terrain_height_shader_vs cg
+{
+	source TerrainHeightShader.cg
+	entry_point main
+	profiles vs_2_0
+}
+
+fragment_program terrain_height_shader_ps cg
+{
+	source TerrainHeightShader.cg
+	entry_point main_ps
+	profiles ps_2_0
+}
+
+material terrain_material
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+
+			texture_unit height_shader
+			{
+				texture default.png
+				tex_coord_set 0
+				tex_address_mode clamp
+			}
+		
+			texture_unit lightmap
+			{
+				texture default.png 
+				tex_coord_set 1 
+				colour_op modulate
+				tex_address_mode clamp
+			}
+	
+			vertex_program_ref terrain_height_shader_vs
+			{
+				param_named_auto worldViewProj  worldviewproj_matrix
+
+				param_named_auto pageWidth      custom 0
+				param_named_auto pagePosition   custom 1
+
+				param_named_auto maxHeight      custom 2
+				param_named_auto vPerMetre      custom 3
+				
+			}
+			
+			fragment_program_ref terrain_height_shader_ps
+			{
+			}			
+		}
+	}
+}

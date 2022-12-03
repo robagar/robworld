@@ -1,0 +1,21 @@
+name: default
+
+#textureName: DefaultHeightColours.png
+textureName: ScaledGEBCODepthSmoothed.png
+maxHeight: 10
+vPerMetre: -0.0002488895
+
+data:
+10, B0AC71, None, false
+0, B0AC71, LerpRGB, true
+-10, 87CCD3, LerpRGB, false
+-250, 87CCD3, LerpRGB, false
+-500, 62C2D8, LerpRGB, true
+-1000, 38B9D6, LerpRGB, true
+-1500, B0CA, LerpRGB, true
+-2000, 1A9BB8, LerpRGB, true
+-2500, 148BAB, LerpRGB, true
+-3000, 155787, LerpRGB, true
+-3500, 152E66, LerpRGB, true
+-4000, 1A1736, LerpRGB, true
+-4500, 1A1736, LerpRGB, false

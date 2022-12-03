@@ -1,0 +1,9 @@
+
+
+float4 main(float3 normal: TEXCOORD0
+
+) : COLOR
+{
+  return float4(normal.xyz, 1.0);
+
+}

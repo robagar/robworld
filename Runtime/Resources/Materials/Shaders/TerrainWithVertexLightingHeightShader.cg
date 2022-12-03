@@ -1,0 +1,41 @@
+#include "Noise.cg"
+
+
+
+void main(in      float3 position    : POSITION,
+					out     float4 oPosition   : POSITION,
+					out     float2 oUV0        : TEXCOORD0,
+					out     float2 posXY       : TEXCOORD1, 
+					uniform float4x4 worldViewProj,
+					uniform float maxHeight,
+					uniform float vPerMetre,
+					uniform float pageWidth,
+					uniform float2 pagePosition
+					)
+{
+	oPosition = mul(worldViewProj, float4(position.xyz, 1.0)); 
+	
+	// height shading uv coords
+	oUV0 = float2(0.0, saturate((position.z - maxHeight) * vPerMetre));
+	posXY = position.xy;
+}
+
+sampler t0 : register(s0);
+
+float4 main_ps(in float2 uv0 : TEXCOORD0,
+							 in float2 posXY) : COLOR
+{
+  float3 c = tex2D(t0, uv0).xyz;
+	
+	// noise modulation
+	// float n0 = 0.9 + snoise(posXY * 50.0) * 0.1;
+	// float n1 = 0.95 + snoise(posXY * 20.0) * 0.05;
+	// float n2 = 0.92 + snoise(posXY * 39.0) * 0.08;
+
+	float n = 1;
+	for(int i=0; i<8; ++i)
+		n *= 0.9 + snoise(posXY * 10 * i) * 0.1; 
+		
+  return float4(c * n, 1);
+}
+

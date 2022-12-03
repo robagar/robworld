@@ -1,0 +1,14 @@
+material Flag
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.900000 0.000000 0.000000 1.000000
+			diffuse 0.695100 0 0 1.000000
+			specular 0.340858 0.340858 0.340858 1.000000 0
+			emissive 0.000000 0.000000 0.000000 1.000000
+		}
+	}
+}

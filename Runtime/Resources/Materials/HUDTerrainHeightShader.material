@@ -1,0 +1,13 @@
+material hud_terrain_height_shader_material
+{
+  technique
+  {
+    pass
+    {
+      texture_unit height_colours
+      {
+        texture white.png
+      }
+    }
+  }
+}

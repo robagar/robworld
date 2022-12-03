@@ -1,0 +1,192 @@
+
+template container BorderPanel(hud_panel)
+{
+  metrics_mode pixels
+  
+  material hud_panel_material
+  uv_coords 0.3125 0.3125 0.6875 0.6875
+  
+  border_material hud_panel_material
+  border_size 10 10 10 10
+  
+  border_topleft_uv 0 0 0.3125 0.3125
+  border_topright_uv 0.6875 0 0.9999 0.3125
+  border_bottomleft_uv 0 0.6875 0.3125 0.9999
+  border_bottomright_uv 0.6875 0.6875 0.9999 0.9999
+  
+  border_left_uv 0 0.3125 0.3125 0.6875
+  border_right_uv 0.6875 0.3125 0.9999 0.6875
+  border_top_uv 0.3125 0 0.6875 0.3125
+  border_bottom_uv 0.3125 0.6875 0.6875 0.9999
+}  
+
+hud
+{
+	zorder 10
+
+	container Panel(hud_panel)
+	{
+	  visible true
+	
+		top 0
+		left 0
+		width 1
+		height 1
+		
+  	container BorderPanel(logo_panel) : hud_panel
+  	{
+		visible false
+		
+  		horz_align left
+      vert_align top
+  
+      left 10
+      top 10
+      width 200
+      height 110
+  
+      material logo_material
+      uv_coords 0 0.25 1 0.75
+   	}
+
+    container BorderPanel(first_person_info_panel) : hud_panel
+    {
+  		horz_align right
+  
+      left -210
+      top 10
+      width 200
+      height 300
+    
+    
+  		element Panel(overview_map)
+  		{
+  		  visible true
+  		
+  			metrics_mode pixels
+  			horz_align left
+  			
+  			top 10
+  			left 10
+  			width 180
+  			height 180
+  		}
+  		
+   		element TextArea(first_person_location)
+  		{
+    	  visible false
+  	
+  			metrics_mode pixels
+  			horz_align right
+
+  			top 200
+  			left -190
+  			width 180
+  			height 200
+  			
+  			colour        0.7 0.8 1.0
+  			//colour_bottom 0.3 0.4 0.5
+  			font_name Eurostile-28pt
+  			char_height 24
+  		} 		
+  	}	
+		
+    container BorderPanel(location_info_panel) : hud_panel
+    {
+      vert_align bottom
+		  left 10
+		  top -310
+		  width 150
+		  height 300
+		  
+		  container Panel(terrain_height)
+		  {
+			  visible true
+		  
+  			metrics_mode pixels
+  			width 140
+  			height 280
+  			
+		    element Panel(terrain_height_shader)
+		    {
+    			metrics_mode pixels
+		      left 60
+		      top 20
+		      width 10
+		      height 260
+		      material hud_terrain_height_shader_material
+		    }
+		    
+		    element TextArea(terrain_height_label_prototype)
+		    {
+    			metrics_mode pixels
+    			
+    			left 0
+    			top 0
+    			width 100
+    			height 20
+    			
+    			colour      0.7 0.8 1.0
+    			font_name   Eurostile-28pt
+    			char_height 16
+    			
+    			//caption terrain_height_label_prototype 
+		    }
+		    
+		    element TextArea(terrain_height_arrow_label)
+		    {
+    			metrics_mode pixels
+    			
+    			left 5
+    			top 0
+    			width 100
+    			height 20
+    			
+    			colour      0.7 0.8 1.0
+    			font_name   Eurostile-28pt
+    			char_height 16
+		    }
+		    
+		    element Panel(terrain_height_arrow)
+		    {
+    			metrics_mode pixels
+
+    			left 40
+    			top 0
+    			width 18
+    			height 18
+    			
+    			material hud_arrow_right_material
+		    }
+		  }
+		}
+   			
+		element TextArea(view_focus_info)
+		{
+			top 0.5
+			left 0.5
+			width 0.5
+			height 0.5
+			
+			colour      0.0 0.0 0.3
+			font_name   Eurostile-28pt
+			char_height 0.04
+		}
+				
+		element TextArea(debug_info)
+		{
+			visible true
+		
+			top 0
+			left 0.01
+			width 0.5
+			height 0.25
+			
+			colour        0.7 0.8 1.0
+			colour_bottom 0.3 0.4 0.5
+			font_name Consolas-28pt
+			char_height 0.03
+		}
+		
+	}
+}

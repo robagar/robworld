@@ -1,0 +1,37 @@
+
+vertex_program DebugNormals_vs cg
+{
+	source DebugNormals_vs.cg
+	entry_point main
+	profiles vs_1_1 arbvp1
+
+	default_params
+	{
+		param_named_auto worldViewProj_matrix worldviewproj_matrix	
+	}
+}
+
+fragment_program DebugNormals_ps cg
+{
+	source DebugNormals_ps.cg
+	entry_point main
+	profiles ps_2_0 arbfp1
+
+}
+
+material DebugNormalsMaterial
+{
+	technique
+	{
+		pass
+		{
+			vertex_program_ref DebugNormals_vs
+			{
+			}
+
+			fragment_program_ref DebugNormals_ps
+			{
+			}
+		}
+	}
+}

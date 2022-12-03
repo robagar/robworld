@@ -1,0 +1,37 @@
+vertex_program procedural_sky_vs cg
+{
+	source ProceduralSky.cg
+	entry_point main_vs
+	profiles vs_2_x
+}
+
+fragment_program procedural_sky_ps cg
+{
+	source ProceduralSky.cg
+	entry_point main_ps
+	profiles ps_2_x
+}
+
+material ProceduralSkyMaterial
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+
+	
+			vertex_program_ref procedural_sky_vs
+			{
+				param_named_auto worldViewProj  worldviewproj_matrix
+			}
+			
+			fragment_program_ref procedural_sky_ps
+			{
+				param_named waterColor float3 0.1 0.244 0.295
+				param_named_auto cameraPos camera_position
+			}			
+		}
+
+	}
+}

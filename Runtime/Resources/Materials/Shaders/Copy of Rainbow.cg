@@ -1,0 +1,12 @@
+void main(in      float3 position    : POSITION,
+					out     float4 oColor      : COLOR,
+					out     float4 oPosition   : POSITION,
+					out     float2 oUV0        : TEXCOORD0,
+					uniform float4x4 worldViewProj,
+					uniform float layerDepth)
+{
+	oPosition = mul(worldViewProj, float4(position.xyz, 1.0)); 
+	oColor = float4(1.0, 1.0, 1.0, 1.0);
+	oUV0 = float2(saturate(-position.y/layerDepth), 0.0);
+}
+

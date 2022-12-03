@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{E4B73698-4797-4B30-B3E6-91A48F3B1269}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>GoatWorld</RootNamespace>
+    <ProjectName>RobWorld</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\C++ Libraries\LibNoise\src;C:\C++ Libraries\boost;C:\C++ Libraries\Ogre\sdk\include\OIS;C:\C++ Libraries\Ogre\sdk\include\OGRE;C:\C++ Libraries\bullet\src;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\C++ Libraries\boost\lib;C:\C++ Libraries\TinyXML++\lib;C:\C++ Libraries\Ogre\build\sdk\lib\debug;C:\C++ Libraries\Ogre\build\sdk\lib\debug\opt;C:\C++ Libraries\bullet\lib\Debug;C:\C++ Libraries\LibNoise\win32\bin\debug;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)\bin\$(Configuration)\</OutDir>
+    <IntDir>obj\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>C:\C++ Libraries\LibNoise\src;C:\C++ Libraries\boost;C:\C++ Libraries\Ogre\sdk\include\OIS;C:\C++ Libraries\Ogre\sdk\include\OGRE;C:\C++ Libraries\bullet\src;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)\bin\$(Configuration)\</OutDir>
+    <IntDir>obj\$(Configuration)\</IntDir>
+    <LibraryPath>C:\C++ Libraries\boost\lib;C:\C++ Libraries\TinyXML++\lib;C:\C++ Libraries\Ogre\build\sdk\lib\release;C:\C++ Libraries\Ogre\build\sdk\lib\release\opt;C:\C++ Libraries\bullet\lib\release;C:\C++ Libraries\LibNoise\win32\bin\release;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/Zm140 %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>OgreMain_d.lib;RenderSystem_Direct3D9_d.lib;Plugin_OctreeSceneManager_d.lib;Plugin_CgProgramManager_d.lib;OIS_d.lib;libticppd.lib;libnoise_d.lib;BulletSoftBody.lib;BulletDynamics.lib;BulletCollision.lib;LinearMath.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>OgreMain.lib;RenderSystem_Direct3D9.lib;Plugin_OctreeSceneManager.lib;Plugin_CgProgramManager.lib;OIS.lib;libticpp.lib;libnoise.lib;BulletSoftBody.lib;BulletDynamics.lib;BulletCollision.lib;LinearMath.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\3D\Geometry.cpp" />
+    <ClCompile Include="src\3D\Grid.cpp" />
+    <ClCompile Include="src\Command\Commands.cpp" />
+    <ClCompile Include="src\Debug\Debug.cpp" />
+    <ClCompile Include="src\Geo\DegMinSec.cpp" />
+    <ClCompile Include="src\Geo\GeoLocation.cpp" />
+    <ClCompile Include="src\Geo\MercatorProjection.cpp" />
+    <ClCompile Include="src\RobWorldApp.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\Input\Input.cpp" />
+    <ClCompile Include="src\Main.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\Misc\Config.cpp" />
+    <ClCompile Include="src\Misc\MiscNumeric.cpp" />
+    <ClCompile Include="src\Physics\BulletUtil.cpp" />
+    <ClCompile Include="src\Physics\Float.cpp" />
+    <ClCompile Include="src\Physics\Physics.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">../StdAfx.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="src\Physics\RigidBodyProperties.cpp" />
+    <ClCompile Include="src\Physics\ThingBulletMotionState.cpp" />
+    <ClCompile Include="src\StdAfx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\View\HUD\FirstPersonLocationHUDElement.cpp" />
+    <ClCompile Include="src\View\HUD\HUD.cpp" />
+    <ClCompile Include="src\View\HUD\HUDOverviewMap.cpp" />
+    <ClCompile Include="src\View\HUD\HUDThingLabel.cpp" />
+    <ClCompile Include="src\View\HUD\TerrainHeightHUDElement.cpp" />
+    <ClCompile Include="src\View\ObjectLabel.cpp" />
+    <ClCompile Include="src\View\WorldView.cpp" />
+    <ClCompile Include="src\World\Ocean\Ocean.cpp" />
+    <ClCompile Include="src\World\Ocean\OceanSurfaceReflectionCubeMap.cpp" />
+    <ClCompile Include="src\World\Ocean\Perturbation2DPerlinNoise.cpp" />
+    <ClCompile Include="src\World\Ocean\Perturbation2DSineX.cpp" />
+    <ClCompile Include="src\World\Ocean\PerturbedHorizontal.cpp" />
+    <ClCompile Include="src\World\Ocean\PerturbedProjectedGrid.cpp" />
+    <ClCompile Include="src\World\Ocean\Ripples.cpp" />
+    <ClCompile Include="src\World\Ocean\SimpleProjectedGrid.cpp" />
+    <ClCompile Include="src\World\Sky\Sky.cpp" />
+    <ClCompile Include="src\World\Terrain\FlatWorldTerrainPageSource.cpp" />
+    <ClCompile Include="src\World\Terrain\IsotropicTerrainPageManager.cpp" />
+    <ClCompile Include="src\World\Terrain\LocalFileTerrainPageSource.cpp" />
+    <ClCompile Include="src\World\Terrain\PerlinNoiseTerrainPageSource.cpp" />
+    <ClCompile Include="src\World\Terrain\Terrain.cpp" />
+    <ClCompile Include="src\World\Terrain\TerrainHeightShader.cpp" />
+    <ClCompile Include="src\World\Terrain\TerrainPage.cpp" />
+    <ClCompile Include="src\World\Terrain\TerrainPageCollection.cpp" />
+    <ClCompile Include="src\World\Terrain\TerrainPageData.cpp" />
+    <ClCompile Include="src\World\Terrain\TerrainPageLoader.cpp" />
+    <ClCompile Include="src\World\Terrain\TerrainPageManager.cpp" />
+    <ClCompile Include="src\World\Terrain\TerrainPageSource.cpp" />
+    <ClCompile Include="src\World\Terrain\TerrainParams.cpp" />
+    <ClCompile Include="src\World\Terrain\TerrainRaySceneQuery.cpp" />
+    <ClCompile Include="src\World\Terrain\TerrainTile.cpp" />
+    <ClCompile Include="src\World\Terrain\TerrainTileIndexDataManager.cpp" />
+    <ClCompile Include="src\World\Terrain\TerrainTileParams.cpp" />
+    <ClCompile Include="src\World\Things\FirstPerson.cpp" />
+    <ClCompile Include="src\World\Things\MovableThing.cpp" />
+    <ClCompile Include="src\World\Things\RigidThing.cpp" />
+    <ClCompile Include="src\World\Things\SoftThing.cpp" />
+    <ClCompile Include="src\World\Things\Thing.cpp" />
+    <ClCompile Include="src\World\Things\ThingMaker.cpp" />
+    <ClCompile Include="src\World\World.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\3D\Geometry.h" />
+    <ClInclude Include="src\3D\Grid.h" />
+    <ClInclude Include="src\Command\Commands.h" />
+    <ClInclude Include="src\Debug\Debug.h" />
+    <ClInclude Include="src\Debug\DebugBuf.h" />
+    <ClInclude Include="src\Geo\DegMinSec.h" />
+    <ClInclude Include="src\Geo\GeoLocation.h" />
+    <ClInclude Include="src\Geo\MapCoordinate.h" />
+    <ClInclude Include="src\Geo\MapProjection.h" />
+    <ClInclude Include="src\Geo\MercatorProjection.h" />
+    <ClInclude Include="src\Geo\Projection.h" />
+    <ClInclude Include="src\RobWorldApp.h" />
+    <ClInclude Include="src\Input\Input.h" />
+    <ClInclude Include="src\Input\InputState.h" />
+    <ClInclude Include="src\Misc\Clock.h" />
+    <ClInclude Include="src\Misc\Config.h" />
+    <ClInclude Include="src\Misc\Misc.h" />
+    <ClInclude Include="src\Misc\MiscNumeric.h" />
+    <ClInclude Include="src\Misc\OgreIos.h" />
+    <ClInclude Include="src\Physics\BulletUtil.h" />
+    <ClInclude Include="src\Physics\Float.h" />
+    <ClInclude Include="src\Physics\Physics.h" />
+    <ClInclude Include="src\Physics\RigidBodyProperties.h" />
+    <ClInclude Include="src\Physics\ThingBulletMotionState.h" />
+    <ClInclude Include="src\StdAfx.h" />
+    <ClInclude Include="src\View\HUD\FirstPersonLocationHUDElement.h" />
+    <ClInclude Include="src\View\HUD\HUD.h" />
+    <ClInclude Include="src\View\HUD\HUDElement.h" />
+    <ClInclude Include="src\View\HUD\HUDOverviewMap.h" />
+    <ClInclude Include="src\View\HUD\HUDThingLabel.h" />
+    <ClInclude Include="src\View\HUD\SingleOverlayElementHUDElement.h" />
+    <ClInclude Include="src\View\HUD\TerrainHeightHUDElement.h" />
+    <ClInclude Include="src\View\ObjectLabel.h" />
+    <ClInclude Include="src\View\WorldView.h" />
+    <ClInclude Include="src\View\WorldViewState.h" />
+    <ClInclude Include="src\World\Ocean\Ocean.h" />
+    <ClInclude Include="src\World\Ocean\OceanSurfaceReflectionCubeMap.h" />
+    <ClInclude Include="src\World\Ocean\Perturbation2D.h" />
+    <ClInclude Include="src\World\Ocean\Perturbation2DPerlinNoise.h" />
+    <ClInclude Include="src\World\Ocean\Perturbation2DSineX.h" />
+    <ClInclude Include="src\World\Ocean\Perturbation2DTrochoid.h" />
+    <ClInclude Include="src\World\Ocean\PerturbedHorizontal.h" />
+    <ClInclude Include="src\World\Ocean\PerturbedProjectedGrid.h" />
+    <ClInclude Include="src\World\Ocean\Ripples.h" />
+    <ClInclude Include="src\World\Ocean\SimpleProjectedGrid.h" />
+    <ClInclude Include="src\World\Sky\Sky.h" />
+    <ClInclude Include="src\World\Terrain\FlatWorldTerrainPageSource.h" />
+    <ClInclude Include="src\World\Terrain\IsotropicTerrainPageManager.h" />
+    <ClInclude Include="src\World\Terrain\LocalFileTerrainPageSource.h" />
+    <ClInclude Include="src\World\Terrain\PerlinNoiseTerrainPageSource.h" />
+    <ClInclude Include="src\World\Terrain\Terrain.h" />
+    <ClInclude Include="src\World\Terrain\TerrainHeightShader.h" />
+    <ClInclude Include="src\World\Terrain\TerrainListener.h" />
+    <ClInclude Include="src\World\Terrain\TerrainPage.h" />
+    <ClInclude Include="src\World\Terrain\TerrainPageCollection.h" />
+    <ClInclude Include="src\World\Terrain\TerrainPageData.h" />
+    <ClInclude Include="src\World\Terrain\TerrainPageLoader.h" />
+    <ClInclude Include="src\World\Terrain\TerrainPageManagementParams.h" />
+    <ClInclude Include="src\World\Terrain\TerrainPageManager.h" />
+    <ClInclude Include="src\World\Terrain\TerrainPageSource.h" />
+    <ClInclude Include="src\World\Terrain\TerrainParams.h" />
+    <ClInclude Include="src\World\Terrain\TerrainRaySceneQuery.h" />
+    <ClInclude Include="src\World\Terrain\TerrainStats.h" />
+    <ClInclude Include="src\World\Terrain\TerrainTile.h" />
+    <ClInclude Include="src\World\Terrain\TerrainTileIndexDataManager.h" />
+    <ClInclude Include="src\World\Terrain\TerrainTileIndexDataManagerListener.h" />
+    <ClInclude Include="src\World\Terrain\TerrainTileNeighbour.h" />
+    <ClInclude Include="src\World\Terrain\TerrainTileParams.h" />
+    <ClInclude Include="src\World\Things\FirstPerson.h" />
+    <ClInclude Include="src\World\Things\MovableThing.h" />
+    <ClInclude Include="src\World\Things\RigidThing.h" />
+    <ClInclude Include="src\World\Things\SoftThing.h" />
+    <ClInclude Include="src\World\Things\Thing.h" />
+    <ClInclude Include="src\World\Things\ThingMaker.h" />
+    <ClInclude Include="src\World\World.h" />
+    <ClInclude Include="src\World\WorldListener.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

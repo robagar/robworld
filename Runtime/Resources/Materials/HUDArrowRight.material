@@ -1,0 +1,17 @@
+material hud_arrow_right_material
+{
+  technique
+  {
+    pass
+    {
+			lighting off
+
+      scene_blend alpha_blend
+
+      texture_unit
+      {
+        texture HUD-arrow-right.png
+      }
+    }
+  }
+ }  

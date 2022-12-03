@@ -1,0 +1,18 @@
+material hud_panel_material
+{
+  technique
+  {
+    pass
+    {
+			lighting off
+
+      scene_blend alpha_blend
+
+      texture_unit
+      {
+        texture HUD-panel-background.png
+        //colour_op_ex source1 src_manual src_current 1.0, 0.0, 0.0
+      }
+    }
+  }
+ }  

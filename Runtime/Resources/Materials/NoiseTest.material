@@ -1,0 +1,33 @@
+vertex_program noise_test_vs cg
+{
+	source NoiseTest.cg
+	entry_point main_vs
+	profiles vs_2_x
+}
+
+fragment_program noise_test_ps cg
+{
+	source NoiseTest.cg
+	entry_point main_ps
+	profiles ps_2_x
+}
+
+material noise_test_material
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			
+			vertex_program_ref noise_test_vs
+			{
+				param_named_auto worldViewProj  worldviewproj_matrix
+			}
+			
+			fragment_program_ref noise_test_ps
+			{
+			}			
+		}
+	}
+}
